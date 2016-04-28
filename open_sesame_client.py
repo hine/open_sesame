@@ -109,8 +109,8 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         self.write_message(json.dumps({'message': 'motion_command', 'json_data': motion_data}))
         if state['robot_connected']:
             self.write_message(json.dumps({'message': 'robot_connected'}))
-        if state['renv_connected']:
-            self.write_message(json.dumps({'message': 'renv_connected'}))
+        if state['open_sesame_connected']:
+            self.write_message(json.dumps({'message': 'open_sesame_connected'}))
 
     def check_origin(self, origin):
         ''' アクセス元チェックをしないように上書き '''
@@ -157,7 +157,8 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             # Scratchに接続
             print('Connecting to OpenSesame...', end='')
             try:
-                ws = RenvConnecter(received_data['websocket'], protocols=['http-only'])
+                print(received_data['websocket'])
+                ws = OpenSesameConnecter(received_data['websocket'], protocols=['http-only'])
                 ws.connect()
             except:
                 self.write_message(json.dumps({'message': 'open_sesame_cannot_connect'}))
@@ -166,12 +167,12 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             else:
                 self.write_message(json.dumps({'message': 'open_sesame_connected'}))
                 state['open_sesame_connected'] = True
-                ws.write_message(json.dumps({'message': 'robot_connected'}))
+                ws.send(json.dumps({'message': 'robot_connected'}))
                 print('done')
         elif received_data['command'] == 'open_sesame_disconnect':
             # Scratcから切断
             print('Disconnecting from OpenSesame...', end='')
-            ws.write_message(json.dumps({'message': 'robot_disconnected'}))
+            ws.send(json.dumps({'message': 'robot_disconnected'}))
             ws.close()
             self.write_message(json.dumps({'message': 'open_sesame_disconnected'}))
             state['open_sesame_connected'] = False
@@ -277,7 +278,7 @@ if __name__ == '__main__':
     # モーションデータのインスタンス生成
     md = MotionData()
 
-    # Renv用のウェブソケットのインスタンス用変数準備
+    # OpenSesame用のウェブソケットのインスタンス用変数準備
     ws = None
 
     # 引数処理

@@ -109,10 +109,10 @@ if __name__ == '__main__':
 
     # Tornadoサーバー起動
     print('Starting Web/WebSocket Server...', end='')
-    web_application.listen(8888)
+    web_application.listen(8880)
     print('done')
 
-    print('Open http://localhost:8888/')
+    print('Open http://localhost:8880/')
     print('')
 
     tornado.ioloop.IOLoop.instance().start()
