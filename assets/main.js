@@ -5,6 +5,7 @@
 
   ws.onopen = function() {
     // WebSocketオープン時の挙動を書く
+    ws.send(JSON.stringify({command: "state_check"}));
   };
 
   ws.onmessage = function (evt) {
@@ -17,98 +18,26 @@
     }
   };
 
-  $('#robot-connect').on('click', function() {
-    if ($('#serial-port').val() == '') {
-      alert("シリアルポートを指定してください。");
-    } else {
-      ws.send(JSON.stringify({command: "robot_connect", port: $('#serial-port').val()}));
-    }
+  $('#arrival_alert').on('click', function() {
+    ws.send(JSON.stringify({command: "arrival_alert"}));
+    buttonDisable($('#arrival_alert'));
+    buttonEnable($('#alert_reset'));
   });
 
-  $('#robot-disconnect').on('click', function() {
-    ws.send(JSON.stringify({command: "robot_disconnect"}));
+  $('#alert_reset').on('click', function() {
+    ws.send(JSON.stringify({command: "alert_reset"}));
+    buttonDisable($('#alert_reset'));
+    buttonEnable($('#arrival_alert'));
   });
-
-  $('#save-json').on('click', function() {
-    try {
-      jsonData = JSON.parse($('#json-data').val());
-      ws.send(JSON.stringify({command: "set_motion_command", json_data: jsonData}));
-    } catch(e) {
-      alert("JSONの構文が間違っています")
-    }
-  });
-
-  $('#renv-connect').on('click', function() {
-    if ($('#websocket').val() == '') {
-      alert("websocketを指定してください。");
-    } else {
-      ws.send(JSON.stringify({command: "renv_connect", websocket: $('#websocket').val()}));
-    }
-  });
-
-  $('#renv-disconnect').on('click', function() {
-    ws.send(JSON.stringify({command: "renv_disconnect"}));
-  });
-
-  $('#json-data').on('change keyup', function() {
-    buttonEnable($('#save-json'));
-  });
-
-  var json = {};
 
   function parseMessage(messageData) {
     // WebSocketで受け取ったJSONメッセージの処理
     message = messageData['message']
     if (message == 'robot_connected') {
-      $('#serial-port').prop("disabled", true);
-      buttonDisable($('#robot-connect'));
-      buttonEnable($('#robot-disconnect'));
-      alert('ロボットに接続されました。');
-    }
-    if (message == 'robot_cannot_connect') {
-      alert('ロボットに接続出来ませんでした。シリアルポートの確認をしてください。');
+       $('#robot_connection').text('ロボットが監視中')
     }
     if (message == 'robot_disconnected') {
-      $('#serial-port').prop("disabled", false);
-      buttonEnable($('#robot-connect'));
-      buttonDisable($('#robot-disconnect'));
-    }
-    if (message == 'motion_command') {
-      json = messageData['json_data'];
-      printJSON();
-      buttonEnable($('#save-json'));
-      $('#editor').jsonEditor(json, { change: updateJSON, propertyclick: showPath });
-      $('#json-data').change(function() {
-        var val = $('#json-data').val();
-        if (val) {
-          try {
-            json = JSON.parse(val);
-          }
-          catch (e) {
-            alert('Error in parsing json. ' + e);
-          }
-        } else {
-          json = {};
-        }
-        $('#editor').jsonEditor(json, { change: updateJSON, propertyclick: showPath });
-      });
-      $('#expander').click(function() {
-        var editor = $('#editor');
-        editor.toggleClass('expanded');
-        $(this).text(editor.hasClass('expanded') ? 'Collapse' : 'Expand all');
-      });
-    }
-    if (message == 'renv_connected') {
-      buttonDisable($('#renv-connect'));
-      buttonEnable($('#renv-disconnect'));
-      alert('R-env(連舞)に接続されました');
-    }
-    if (message == 'renv_cannot_connect') {
-      alert('R-env(連舞)に接続出来ませんでした。Scratchの起動と遠隔センサーの設定の確認をしてください。');
-    }
-    if (message == 'renv_disconnected') {
-      buttonEnable($('#renv-connect'));
-      buttonDisable($('#renv-disconnect'));
+      $('#robot_connection').text('誰も見ていません')
     }
   }
 
