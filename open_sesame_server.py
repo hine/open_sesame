@@ -29,7 +29,7 @@ class IndexHandler(tornado.web.RequestHandler):
     '''
     @tornado.web.asynchronous
     def get(self):
-        self.render("index.html")
+        self.render("server.html")
 
 
 class WebSocketHandler(tornado.websocket.WebSocketHandler):
@@ -74,6 +74,16 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                     continue
                 client.write_message(json.dumps({'message': 'robot_disconnected'}))
             state['robot_connected'] = False
+        elif received_data['command'] == 'arrival_alert':
+            for client in self.waiters:
+                if client == self:
+                    continue
+                client.write_message(json.dumps({'message': 'arrival_alert'}))
+        elif received_data['command'] == 'alert_reset':
+            for client in self.waiters:
+                if client == self:
+                    continue
+                client.write_message(json.dumps({'message': 'alert_reset'}))
 
     def _send_message(self):
         pass

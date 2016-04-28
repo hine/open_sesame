@@ -1,4 +1,232 @@
 {
-  "data_set_name": "empty",
-  "data_set": []
+  "data_set_name": "danbo",
+  "data_set": [
+    {
+      "name": "初期姿勢",
+      "type": "motion",
+      "time": 0,
+      "data": [
+        {
+          "type": "pwm",
+          "time": 0,
+          "data": [
+            {
+              "pulse": 750,
+              "iid": 7
+            }
+          ]
+        },
+        {
+          "type": "angle",
+          "time": 200,
+          "data": [
+            {"sid": 2, "angle": -45},
+            {"sid": 23, "angle": -45},
+            {"sid": 31, "angle": 0},
+            {"sid": 3, "angle": 45},
+            {"sid": 6, "angle": -45},
+            {"sid": 4, "angle": 24},
+            {"sid": 7, "angle": -24},
+            {"sid": 10, "angle": -45},
+            {"sid": 16, "angle": 45},
+            {"sid": 11, "angle": -45},
+            {"sid": 17, "angle": 45}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "バイバイ",
+      "type": "motion",
+      "time": 0,
+      "data": [
+        {
+          "type": "pwm",
+          "time": 0,
+          "data": [
+            {
+              "pulse": 2250,
+              "iid": 7
+            }
+          ]
+        },
+        {
+          "type": "angle",
+          "time": 500,
+          "data": [
+            {"sid": 2, "angle": -45},
+            {"sid": 23, "angle": -21},
+            {"sid": 31, "angle": -10.5},
+            {"sid": 3, "angle": 37},
+            {"sid": 6, "angle": 59},
+            {"sid": 4, "angle": 24},
+            {"sid": 7, "angle": -8},
+            {"sid": 10, "angle": -45},
+            {"sid": 16, "angle": 45},
+            {"sid": 11, "angle": -45},
+            {"sid": 17, "angle": 29}
+          ]
+        },
+        {
+          "type": "wait",
+          "time": 500,
+          "data": 0
+        },
+        {
+          "type": "angle",
+          "time": 400,
+          "data": [
+            {"sid": 2, "angle": -45},
+            {"sid": 23, "angle": -29},
+            {"sid": 31, "angle": -16},
+            {"sid": 3, "angle": 53},
+            {"sid": 6, "angle": 67},
+            {"sid": 4, "angle": 24},
+            {"sid": 7, "angle": -32},
+            {"sid": 10, "angle": -45},
+            {"sid": 16, "angle": 45},
+            {"sid": 11, "angle": -45},
+            {"sid": 17, "angle": 29}
+          ]
+        },
+        {
+          "type": "wait",
+          "time": 400,
+          "data": 0
+        },
+        {
+          "type": "angle",
+          "time": 400,
+          "data": [
+            {"sid": 2, "angle": -45},
+            {"sid": 23, "angle": -21},
+            {"sid": 31, "angle": -10.5},
+            {"sid": 3, "angle": 37},
+            {"sid": 6, "angle": 59},
+            {"sid": 4, "angle": 24},
+            {"sid": 7, "angle": -8},
+            {"sid": 10, "angle": -45},
+            {"sid": 16, "angle": 45},
+            {"sid": 11, "angle": -45},
+            {"sid": 17, "angle": 29}
+          ]
+        },
+        {
+          "type": "wait",
+          "time": 400,
+          "data": 0
+        },
+        {
+          "type": "angle",
+          "time": 400,
+          "data": [
+            {"sid": 2, "angle": -45},
+            {"sid": 23, "angle": -29},
+            {"sid": 31, "angle": -16},
+            {"sid": 3, "angle": 53},
+            {"sid": 6, "angle": 67},
+            {"sid": 4, "angle": 24},
+            {"sid": 7, "angle": -32},
+            {"sid": 10, "angle": -45},
+            {"sid": 16, "angle": 45},
+            {"sid": 11, "angle": -45},
+            {"sid": 17, "angle": 29}
+          ]
+        },
+        {
+          "type": "wait",
+          "time": 400,
+          "data": 0
+        },
+        {
+          "type": "angle",
+          "time": 400,
+          "data": [
+            {"sid": 2, "angle": -45},
+            {"sid": 23, "angle": -21},
+            {"sid": 31, "angle": -10.5},
+            {"sid": 3, "angle": 37},
+            {"sid": 6, "angle": 59},
+            {"sid": 4, "angle": 24},
+            {"sid": 7, "angle": -8},
+            {"sid": 10, "angle": -45},
+            {"sid": 16, "angle": 45},
+            {"sid": 11, "angle": -45},
+            {"sid": 17, "angle": 29}
+          ]
+        },
+        {
+          "type": "wait",
+          "time": 400,
+          "data": 0
+        },
+        {
+          "type": "angle",
+          "time": 400,
+          "data": [
+            {"sid": 2, "angle": -45},
+            {"sid": 23, "angle": -29},
+            {"sid": 31, "angle": -16},
+            {"sid": 3, "angle": 53},
+            {"sid": 6, "angle": 67},
+            {"sid": 4, "angle": 24},
+            {"sid": 7, "angle": -32},
+            {"sid": 10, "angle": -45},
+            {"sid": 16, "angle": 45},
+            {"sid": 11, "angle": -45},
+            {"sid": 17, "angle": 29}
+          ]
+        },
+        {
+          "type": "wait",
+          "time": 400,
+          "data": 0
+        },
+        {
+          "type": "angle",
+          "time": 500,
+          "data": [
+            {"sid": 2, "angle": -45},
+            {"sid": 23, "angle": -45},
+            {"sid": 31, "angle": 0},
+            {"sid": 3, "angle": 45},
+            {"sid": 6, "angle": -45},
+            {"sid": 4, "angle": 24},
+            {"sid": 7, "angle": -24},
+            {"sid": 10, "angle": -45},
+            {"sid": 16, "angle": 45},
+            {"sid": 11, "angle": -45},
+            {"sid": 17, "angle": 45}
+          ]
+        },
+        {
+          "type": "wait",
+          "time": 500,
+          "data": 0
+        }
+      ]
+    },
+    {
+      "name": "目が光る",
+      "type": "pwm",
+      "time": 0,
+      "data": [
+        {
+          "pulse": 2250,
+          "iid": 7
+        }
+      ]
+    },
+    {
+      "name": "目が消える",
+      "type": "pwm",
+      "time": 0,
+      "data": [
+        {
+          "pulse": 750,
+          "iid": 7
+        }
+      ]
+    }
+  ]
 }
