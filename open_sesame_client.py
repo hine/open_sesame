@@ -158,7 +158,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             print('Connecting to OpenSesame...', end='')
             try:
                 print(received_data['websocket'])
-                ws = OpenSesameConnecter(received_data['websocket'], protocols=['http-only'])
+                ws = OpenSesameConnecter(received_data['websocket'])
                 ws.connect()
             except:
                 self.write_message(json.dumps({'message': 'open_sesame_cannot_connect'}))
@@ -169,6 +169,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
                 state['open_sesame_connected'] = True
                 ws.send(json.dumps({'message': 'robot_connected'}))
                 print('done')
+
         elif received_data['command'] == 'open_sesame_disconnect':
             # Scratcから切断
             print('Disconnecting from OpenSesame...', end='')

@@ -63,24 +63,24 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         received_data = json.loads(message)
         print('got message:', received_data['command'])
         if received_data['command'] == 'robot_connected':
-            for client in self.waiters:
+            for client in self.clients:
                 if client == self:
                     continue
                 client.write_message(json.dumps({'message': 'robot_connected'}))
             state['robot_connected'] = True
         elif received_data['command'] == 'robot_disconnected':
-            for client in self.waiters:
+            for client in self.clients:
                 if client == self:
                     continue
                 client.write_message(json.dumps({'message': 'robot_disconnected'}))
             state['robot_connected'] = False
         elif received_data['command'] == 'arrival_alert':
-            for client in self.waiters:
+            for client in self.clients:
                 if client == self:
                     continue
                 client.write_message(json.dumps({'message': 'arrival_alert'}))
         elif received_data['command'] == 'alert_reset':
-            for client in self.waiters:
+            for client in self.clients:
                 if client == self:
                     continue
                 client.write_message(json.dumps({'message': 'alert_reset'}))
